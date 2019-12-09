@@ -69,6 +69,55 @@ class ChopTest: XCTestCase {
         XCTAssertEqual(-1, iterativeChop(8, array: [1, 3, 5, 7]))
     }
     
+    func testAllSlice() {
+        // G&W&T
+        XCTAssertEqual(-1, sliceChop(3, array: []))
+        XCTAssertEqual(-1, sliceChop(3, array: [1]))
+        XCTAssertEqual(0,  sliceChop(1, array: [1]))
+        //
+        XCTAssertEqual(0,  sliceChop(1, array: [1, 3, 5]))
+        XCTAssertEqual(1,  sliceChop(3, array: [1, 3, 5]))
+        XCTAssertEqual(2,  sliceChop(5, array: [1, 3, 5]))
+        XCTAssertEqual(-1, sliceChop(0, array: [1, 3, 5]))
+        XCTAssertEqual(-1, sliceChop(2, array: [1, 3, 5]))
+        XCTAssertEqual(-1, sliceChop(4, array: [1, 3, 5]))
+        XCTAssertEqual(-1, sliceChop(6, array: [1, 3, 5]))
+        //
+        XCTAssertEqual(0,  sliceChop(1, array: [1, 3, 5, 7]))
+        XCTAssertEqual(1,  sliceChop(3, array: [1, 3, 5, 7]))
+        XCTAssertEqual(2,  sliceChop(5, array: [1, 3, 5, 7]))
+        XCTAssertEqual(3,  sliceChop(7, array: [1, 3, 5, 7]))
+        XCTAssertEqual(-1, sliceChop(0, array: [1, 3, 5, 7]))
+        XCTAssertEqual(-1, sliceChop(2, array: [1, 3, 5, 7]))
+        XCTAssertEqual(-1, sliceChop(4, array: [1, 3, 5, 7]))
+        XCTAssertEqual(-1, sliceChop(6, array: [1, 3, 5, 7]))
+        XCTAssertEqual(-1, sliceChop(8, array: [1, 3, 5, 7]))
+    }
     
+    
+    func testAlliterativeChopRandom() {
+        // G&W&T
+        XCTAssertEqual(-1, iterativeChopRandom(3, array: []))
+        XCTAssertEqual(-1, iterativeChopRandom(3, array: [1]))
+        XCTAssertEqual(0,  iterativeChopRandom(1, array: [1]))
+        //
+        XCTAssertEqual(0,  iterativeChopRandom(1, array: [1, 3, 5]))
+        XCTAssertEqual(1,  iterativeChopRandom(3, array: [1, 3, 5]))
+        XCTAssertEqual(2,  iterativeChopRandom(5, array: [1, 3, 5]))
+        XCTAssertEqual(-1, iterativeChopRandom(0, array: [1, 3, 5]))
+        XCTAssertEqual(-1, iterativeChopRandom(2, array: [1, 3, 5]))
+        XCTAssertEqual(-1, iterativeChopRandom(4, array: [1, 3, 5]))
+        XCTAssertEqual(-1, iterativeChopRandom(6, array: [1, 3, 5]))
+        //
+        XCTAssertEqual(0,  iterativeChopRandom(1, array: [1, 3, 5, 7]))
+        XCTAssertEqual(1,  iterativeChopRandom(3, array: [1, 3, 5, 7]))
+        XCTAssertEqual(2,  iterativeChopRandom(5, array: [1, 3, 5, 7]))
+        XCTAssertEqual(3,  iterativeChopRandom(7, array: [1, 3, 5, 7]))
+        XCTAssertEqual(-1, iterativeChopRandom(0, array: [1, 3, 5, 7]))
+        XCTAssertEqual(-1, iterativeChopRandom(2, array: [1, 3, 5, 7]))
+        XCTAssertEqual(-1, iterativeChopRandom(4, array: [1, 3, 5, 7]))
+        XCTAssertEqual(-1, iterativeChopRandom(6, array: [1, 3, 5, 7]))
+        XCTAssertEqual(-1, iterativeChopRandom(8, array: [1, 3, 5, 7]))
+    }
     
 }
