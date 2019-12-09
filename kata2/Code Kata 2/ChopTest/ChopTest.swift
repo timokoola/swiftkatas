@@ -18,41 +18,57 @@ class ChopTest: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    func testChopEmpty() {
-        // GIVEN
-        let testArr : [Int] = []
-        
-        // WHEN
-        let result = dummyChop(3, array: testArr)
-        
-        // THEN
-        XCTAssertEqual(-1, result)
-    }
     
     func testAll() {
         // G&W&T
-        XCTAssertEqual(-1, dummyChop(3, array: []))
-        XCTAssertEqual(-1, dummyChop(3, array: [1]))
-        XCTAssertEqual(0,  dummyChop(1, array: [1]))
+        XCTAssertEqual(-1, recursiveChop(3, array: []))
+        XCTAssertEqual(-1, recursiveChop(3, array: [1]))
+        XCTAssertEqual(0,  recursiveChop(1, array: [1]))
         //
-        XCTAssertEqual(0,  dummyChop(1, array: [1, 3, 5]))
-        XCTAssertEqual(1,  dummyChop(3, array: [1, 3, 5]))
-        XCTAssertEqual(2,  dummyChop(5, array: [1, 3, 5]))
-        XCTAssertEqual(-1, dummyChop(0, array: [1, 3, 5]))
-        XCTAssertEqual(-1, dummyChop(2, array: [1, 3, 5]))
-        XCTAssertEqual(-1, dummyChop(4, array: [1, 3, 5]))
-        XCTAssertEqual(-1, dummyChop(6, array: [1, 3, 5]))
+        XCTAssertEqual(0,  recursiveChop(1, array: [1, 3, 5]))
+        XCTAssertEqual(1,  recursiveChop(3, array: [1, 3, 5]))
+        XCTAssertEqual(2,  recursiveChop(5, array: [1, 3, 5]))
+        XCTAssertEqual(-1, recursiveChop(0, array: [1, 3, 5]))
+        XCTAssertEqual(-1, recursiveChop(2, array: [1, 3, 5]))
+        XCTAssertEqual(-1, recursiveChop(4, array: [1, 3, 5]))
+        XCTAssertEqual(-1, recursiveChop(6, array: [1, 3, 5]))
         //
-        XCTAssertEqual(0,  dummyChop(1, array: [1, 3, 5, 7]))
-        XCTAssertEqual(1,  dummyChop(3, array: [1, 3, 5, 7]))
-        XCTAssertEqual(2,  dummyChop(5, array: [1, 3, 5, 7]))
-        XCTAssertEqual(3,  dummyChop(7, array: [1, 3, 5, 7]))
-        XCTAssertEqual(-1, dummyChop(0, array: [1, 3, 5, 7]))
-        XCTAssertEqual(-1, dummyChop(2, array: [1, 3, 5, 7]))
-        XCTAssertEqual(-1, dummyChop(4, array: [1, 3, 5, 7]))
-        XCTAssertEqual(-1, dummyChop(6, array: [1, 3, 5, 7]))
-        XCTAssertEqual(-1, dummyChop(8, array: [1, 3, 5, 7]))
+        XCTAssertEqual(0,  recursiveChop(1, array: [1, 3, 5, 7]))
+        XCTAssertEqual(1,  recursiveChop(3, array: [1, 3, 5, 7]))
+        XCTAssertEqual(2,  recursiveChop(5, array: [1, 3, 5, 7]))
+        XCTAssertEqual(3,  recursiveChop(7, array: [1, 3, 5, 7]))
+        XCTAssertEqual(-1, recursiveChop(0, array: [1, 3, 5, 7]))
+        XCTAssertEqual(-1, recursiveChop(2, array: [1, 3, 5, 7]))
+        XCTAssertEqual(-1, recursiveChop(4, array: [1, 3, 5, 7]))
+        XCTAssertEqual(-1, recursiveChop(6, array: [1, 3, 5, 7]))
+        XCTAssertEqual(-1, recursiveChop(8, array: [1, 3, 5, 7]))
     }
+    
+    func testAllIterative() {
+        // G&W&T
+        XCTAssertEqual(-1, iterativeChop(3, array: []))
+        XCTAssertEqual(-1, iterativeChop(3, array: [1]))
+        XCTAssertEqual(0,  iterativeChop(1, array: [1]))
+        //
+        XCTAssertEqual(0,  iterativeChop(1, array: [1, 3, 5]))
+        XCTAssertEqual(1,  iterativeChop(3, array: [1, 3, 5]))
+        XCTAssertEqual(2,  iterativeChop(5, array: [1, 3, 5]))
+        XCTAssertEqual(-1, iterativeChop(0, array: [1, 3, 5]))
+        XCTAssertEqual(-1, iterativeChop(2, array: [1, 3, 5]))
+        XCTAssertEqual(-1, iterativeChop(4, array: [1, 3, 5]))
+        XCTAssertEqual(-1, iterativeChop(6, array: [1, 3, 5]))
+        //
+        XCTAssertEqual(0,  iterativeChop(1, array: [1, 3, 5, 7]))
+        XCTAssertEqual(1,  iterativeChop(3, array: [1, 3, 5, 7]))
+        XCTAssertEqual(2,  iterativeChop(5, array: [1, 3, 5, 7]))
+        XCTAssertEqual(3,  iterativeChop(7, array: [1, 3, 5, 7]))
+        XCTAssertEqual(-1, iterativeChop(0, array: [1, 3, 5, 7]))
+        XCTAssertEqual(-1, iterativeChop(2, array: [1, 3, 5, 7]))
+        XCTAssertEqual(-1, iterativeChop(4, array: [1, 3, 5, 7]))
+        XCTAssertEqual(-1, iterativeChop(6, array: [1, 3, 5, 7]))
+        XCTAssertEqual(-1, iterativeChop(8, array: [1, 3, 5, 7]))
+    }
+    
     
     
 }

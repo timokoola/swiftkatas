@@ -8,5 +8,9 @@
 
 import Foundation
 
-print("Hello, World!")
 
+
+
+let one = iterativeChop(1, array: [1, 3, 5])
+
+print("Found it at \(one)")
