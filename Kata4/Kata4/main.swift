@@ -11,7 +11,34 @@ import Foundation
 // [Swift Minimum GET/POST Request Codes - DEV Community
 // 👩‍💻👨‍💻](https://dev.to/mishimay/swift-minimum-getpost-request-codes-1085)
 
+enum DiffType {
+    case max
+    case min
+}
 typealias dateRange = (date: Int, range: Int)
+typealias diffResult = (label: String, diff: Int, type: DiffType)
+
+func genericDiffHandler(data: String, titleCol: Int, largeCol: Int, smallCol: Int, diffType: DiffType) -> diffResult {
+    let rows = data.split(separator: "\n")
+    var diffs: [diffResult] = []
+    
+    for row in rows {
+        guard(row.split(separator: " ").count > max(titleCol, largeCol, smallCol)) else {
+            continue
+        }
+        
+        let title = String(row.split(separator: " ")[titleCol])
+        
+        let maxT = Int(row.split(separator: " ")[largeCol].components(separatedBy: CharacterSet.decimalDigits.inverted).joined())
+        let minT = Int(row.split(separator: " ")[smallCol].components(separatedBy: CharacterSet.decimalDigits.inverted).joined())
+        
+        if let maxV = maxT, let minV = minT {
+            diffs.append((label: title, diff: maxV - minV, diffType))
+        }
+    }
+    
+    return diffType == DiffType.max ? diffs.max {a,b in a.diff < b.diff}! : diffs.min {a,b in a.diff < b.diff}!
+}
 
 // Returns the date number of
 func handleWeatherData(data: String) -> dateRange {
@@ -49,9 +76,16 @@ let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
         if let data = data, let dataString = String(data: data, encoding: .utf8) {
             let first = handleWeatherData(data: dataString)
             print("Date is \(first)")
+            let gen = genericDiffHandler(data: dataString, titleCol: 0, largeCol: 1, smallCol: 2, diffType: DiffType.min)
+            print("Date is \(gen)")
         }
     }
 }
 task.resume()
+
+
+getFootBallTask().resume()
+
+
 
 sleep(4000)
