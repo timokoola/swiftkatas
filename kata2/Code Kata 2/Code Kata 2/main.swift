@@ -11,6 +11,6 @@ import Foundation
 
 
 
-let one = iterativeChop(1, array: [1, 3, 5])
+let one = caseChop(7, array: [1, 3, 5, 7])
 
 print("Found it at \(one)")

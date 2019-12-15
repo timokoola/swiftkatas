@@ -71,27 +71,27 @@ class ChopTest: XCTestCase {
     
     func testAllSlice() {
         // G&W&T
-        XCTAssertEqual(-1, sliceChop(3, array: []))
-        XCTAssertEqual(-1, sliceChop(3, array: [1]))
-        XCTAssertEqual(0,  sliceChop(1, array: [1]))
+        XCTAssertEqual(-1, caseChop(3, array: []))
+        XCTAssertEqual(-1, caseChop(3, array: [1]))
+        XCTAssertEqual(0,  caseChop(1, array: [1]))
         //
-        XCTAssertEqual(0,  sliceChop(1, array: [1, 3, 5]))
-        XCTAssertEqual(1,  sliceChop(3, array: [1, 3, 5]))
-        XCTAssertEqual(2,  sliceChop(5, array: [1, 3, 5]))
-        XCTAssertEqual(-1, sliceChop(0, array: [1, 3, 5]))
-        XCTAssertEqual(-1, sliceChop(2, array: [1, 3, 5]))
-        XCTAssertEqual(-1, sliceChop(4, array: [1, 3, 5]))
-        XCTAssertEqual(-1, sliceChop(6, array: [1, 3, 5]))
+        XCTAssertEqual(0,  caseChop(1, array: [1, 3, 5]))
+        XCTAssertEqual(1,  caseChop(3, array: [1, 3, 5]))
+        XCTAssertEqual(2,  caseChop(5, array: [1, 3, 5]))
+        XCTAssertEqual(-1, caseChop(0, array: [1, 3, 5]))
+        XCTAssertEqual(-1, caseChop(2, array: [1, 3, 5]))
+        XCTAssertEqual(-1, caseChop(4, array: [1, 3, 5]))
+        XCTAssertEqual(-1, caseChop(6, array: [1, 3, 5]))
         //
-        XCTAssertEqual(0,  sliceChop(1, array: [1, 3, 5, 7]))
-        XCTAssertEqual(1,  sliceChop(3, array: [1, 3, 5, 7]))
-        XCTAssertEqual(2,  sliceChop(5, array: [1, 3, 5, 7]))
-        XCTAssertEqual(3,  sliceChop(7, array: [1, 3, 5, 7]))
-        XCTAssertEqual(-1, sliceChop(0, array: [1, 3, 5, 7]))
-        XCTAssertEqual(-1, sliceChop(2, array: [1, 3, 5, 7]))
-        XCTAssertEqual(-1, sliceChop(4, array: [1, 3, 5, 7]))
-        XCTAssertEqual(-1, sliceChop(6, array: [1, 3, 5, 7]))
-        XCTAssertEqual(-1, sliceChop(8, array: [1, 3, 5, 7]))
+        XCTAssertEqual(0,  caseChop(1, array: [1, 3, 5, 7]))
+        XCTAssertEqual(1,  caseChop(3, array: [1, 3, 5, 7]))
+        XCTAssertEqual(2,  caseChop(5, array: [1, 3, 5, 7]))
+        XCTAssertEqual(3,  caseChop(7, array: [1, 3, 5, 7]))
+        XCTAssertEqual(-1, caseChop(0, array: [1, 3, 5, 7]))
+        XCTAssertEqual(-1, caseChop(2, array: [1, 3, 5, 7]))
+        XCTAssertEqual(-1, caseChop(4, array: [1, 3, 5, 7]))
+        XCTAssertEqual(-1, caseChop(6, array: [1, 3, 5, 7]))
+        XCTAssertEqual(-1, caseChop(8, array: [1, 3, 5, 7]))
     }
     
     

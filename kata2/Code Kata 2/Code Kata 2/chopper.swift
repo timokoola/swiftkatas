@@ -39,30 +39,41 @@ func recursiveChopImpl(_ toFind: Int, index: Int, array: [Int]) -> Int {
     return -1
 }
 
+typealias chopParams = (toFind: Int, array: [Int], start: Int, midPoint: Int, end: Int)
 
-// I think this is cheating a bit :)
-// Actually not binary search at all :D
-func sliceChop(_ toFind: Int, array: [Int]) -> Int  {
-    
-    if(array.isEmpty) {
+func caseChopImpl(_ params: chopParams) -> Int  {
+    print("Parameters are \(params)")
+    switch params {
+    case (_, let x, _, _, _) where x.isEmpty:
         return -1
-    } else if(array.count == 1) {
-        return array[0] == toFind ? 0 : -1
-    } else if(array.count == 2) {
-        if(array[0] == toFind) {
-            return 0
-        } else if(array[1] == toFind) {
-            return 0 + 1
-        }
-    } else {
-        let smaller = array.filter {$0 < toFind}
-        if(smaller.count == array.count) {
-            return -1
-        } else if(array[smaller.count] == toFind) {
-            return smaller.count
-        }
+    case (let x, let a, _, let m, _) where a[m] == x:
+        return m
+    case (_, _, let s, let m, let e) where s == m || m == e:
+        return -1
+    case (let x, let a, let s, let m, _) where x < a[m] && x >= a[s]:
+        let val: chopParams = (toFind: x, array: a, start: s, midPoint: (m - s)/2, end: m)
+        return caseChopImpl(val)
+    case (let x, let a, _, let m, let e) where x > a[m] && x <= a[e - 1]:
+        let val: chopParams = (toFind: x, array: a, start: m, midPoint: m + (e - m)/2, end: e)
+        return caseChopImpl(val)
+        
+    default:
+        return -1
     }
-    return -1
+}
+
+func caseChop(_ toFind: Int, array: [Int]) -> Int  {
+    guard !array.isEmpty else {
+        return -1
+    }
+    
+    guard array[0] <= toFind && toFind <= array[array.count-1] else {
+        return -1
+    }
+    
+    let params: chopParams = (toFind: toFind, array: array, start: 0, midPoint: array.count/2, end: array.count)
+    
+    return caseChopImpl(params)
 }
 
 func recursiveChop(_ toFind: Int, array: [Int]) -> Int  {
