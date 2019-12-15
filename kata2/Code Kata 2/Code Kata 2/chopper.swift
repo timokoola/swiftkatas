@@ -51,12 +51,11 @@ func caseChopImpl(_ params: chopParams) -> Int  {
     case (_, _, let s, let m, let e) where s == m || m == e:
         return -1
     case (let x, let a, let s, let m, _) where x < a[m] && x >= a[s]:
-        let val: chopParams = (toFind: x, array: a, start: s, midPoint: (m - s)/2, end: m)
+        let val: chopParams = (toFind: x, array: a, start: s, midPoint: s + (m - s)/2, end: m)
         return caseChopImpl(val)
     case (let x, let a, _, let m, let e) where x > a[m] && x <= a[e - 1]:
         let val: chopParams = (toFind: x, array: a, start: m, midPoint: m + (e - m)/2, end: e)
         return caseChopImpl(val)
-        
     default:
         return -1
     }
