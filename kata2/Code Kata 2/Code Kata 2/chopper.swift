@@ -46,14 +46,16 @@ func caseChopImpl(_ params: chopParams) -> Int  {
     switch params {
     case (_, let x, _, _, _) where x.isEmpty:
         return -1
+    case (let x, let a, let s, _, let e) where x < a[s] || x > a[e-1]:
+        return -1
     case (let x, let a, _, let m, _) where a[m] == x:
         return m
     case (_, _, let s, let m, let e) where s == m || m == e:
         return -1
-    case (let x, let a, let s, let m, _) where x < a[m] && x >= a[s]:
+    case (let x, let a, let s, let m, _) where x < a[m]:
         let val: chopParams = (toFind: x, array: a, start: s, midPoint: s + (m - s)/2, end: m)
         return caseChopImpl(val)
-    case (let x, let a, _, let m, let e) where x > a[m] && x <= a[e - 1]:
+    case (let x, let a, _, let m, let e) where x > a[m]:
         let val: chopParams = (toFind: x, array: a, start: m, midPoint: m + (e - m)/2, end: e)
         return caseChopImpl(val)
     default:
@@ -62,14 +64,6 @@ func caseChopImpl(_ params: chopParams) -> Int  {
 }
 
 func caseChop(_ toFind: Int, array: [Int]) -> Int  {
-    guard !array.isEmpty else {
-        return -1
-    }
-    
-    guard array[0] <= toFind && toFind <= array[array.count-1] else {
-        return -1
-    }
-    
     let params: chopParams = (toFind: toFind, array: array, start: 0, midPoint: array.count/2, end: array.count)
     
     return caseChopImpl(params)
