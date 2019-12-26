@@ -29,7 +29,7 @@ func findSmallestGoalDiff(data: String) -> goalDiff {
         goals.append((team: String(team), diff: maxT - minT))
     }
     
-    return goals.min {a, b in a.diff < b.diff} ?? (team: "", diff: 0)
+    return goals.min {a, b in abs(a.diff) < abs(b.diff)} ?? (team: "", diff: 0)
 }
 
 func getFootBallTask() -> URLSessionDataTask {
@@ -44,8 +44,9 @@ func getFootBallTask() -> URLSessionDataTask {
             if let data = data, let dataString = String(data: data, encoding: .utf8) {
                 //let diff = handleWeatherData(data: dataString)
                 let diff = findSmallestGoalDiff(data: dataString)
-                let genDiff = genericDiffHandler(data: dataString, titleCol: 1, largeCol: 6, smallCol: 8, diffType: DiffType.min)
+                let genDiff = genericDiffHandler(data: dataString, titleCol: 1, largeCol: 6, smallCol: 8, diffType: DiffType.minabs)
                 print("Smallest goal diff is by \(diff) or \(genDiff)")
+                exit(ERR_SUCCESS)
             }
         }
     }

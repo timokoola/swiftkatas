@@ -14,6 +14,8 @@ import Foundation
 enum DiffType {
     case max
     case min
+    case maxabs
+    case minabs
 }
 typealias dateRange = (date: Int, range: Int)
 typealias diffResult = (label: String, diff: Int, type: DiffType)
@@ -37,7 +39,16 @@ func genericDiffHandler(data: String, titleCol: Int, largeCol: Int, smallCol: In
         }
     }
     
-    return diffType == DiffType.max ? diffs.max {a,b in a.diff < b.diff}! : diffs.min {a,b in a.diff < b.diff}!
+    switch diffType {
+    case DiffType.max:
+        return diffs.max {a,b in a.diff < b.diff}!
+    case DiffType.min:
+        return diffs.min {a,b in a.diff < b.diff}!
+    case DiffType.maxabs:
+        return diffs.max {a,b in abs(a.diff) < abs(b.diff)}!
+    case DiffType.minabs:
+        return diffs.min {a,b in abs(a.diff) < abs(b.diff)}!
+    }
 }
 
 // Returns the date number of
@@ -78,14 +89,10 @@ let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             print("Date is \(first)")
             let gen = genericDiffHandler(data: dataString, titleCol: 0, largeCol: 1, smallCol: 2, diffType: DiffType.min)
             print("Date is \(gen)")
+            getFootBallTask().resume()
         }
     }
 }
 task.resume()
 
-
-getFootBallTask().resume()
-
-
-
-sleep(4000)
+dispatchMain()
